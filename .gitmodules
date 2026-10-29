@@ -1,0 +1,15 @@
+[submodule "third_party/hal"]
+	path = third_party/hal
+	url = https://github.com/STMicroelectronics/stm32f4xx-hal-driver
+[submodule "third_party/cmsis-device"]
+	path = third_party/cmsis-device
+	url = https://github.com/STMicroelectronics/cmsis-device-f4
+[submodule "third_party/cmsis-core"]
+	path = third_party/cmsis-core
+	url = https://github.com/STMicroelectronics/cmsis-core
+[submodule "third_party/freertos"]
+	path = third_party/freertos
+	url = https://github.com/FreeRTOS/FreeRTOS-Kernel
+[submodule "third_party/fatfs"]
+	path = third_party/fatfs
+	url = https://github.com/STMicroelectronics/stm32-mw-fatfs

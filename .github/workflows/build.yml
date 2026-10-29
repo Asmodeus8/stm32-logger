@@ -1,0 +1,29 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  firmware:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - run: sudo apt-get update && sudo apt-get install -y gcc-arm-none-eabi libnewlib-arm-none-eabi ninja-build
+      - name: Host tests (ASan + UBSan)
+        run: make -C tests test interop
+      - name: ESP32 bridge tests
+        run: cd esp32 && python3 -m unittest -v test_frames
+      - name: Firmware
+        run: |
+          cmake -S firmware -B build -G Ninja
+          cmake --build build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: firmware
+          path: |
+            build/firmware.elf
+            build/firmware.bin
+            build/firmware.hex
